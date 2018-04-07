@@ -12,23 +12,33 @@ import CircularLayoutView
 class ViewController: UIViewController {
     
     @IBOutlet private weak var circularLayoutView: CircularLayoutView!
+    private var timers: [Timer] = []
     
     @IBAction private func startDemo() {
         
-        circularLayoutView.shift = -60
+        for timer in timers {
+            timer.invalidate()
+        }
+        timers.removeAll()
         
         for subview in circularLayoutView.subviews {
             subview.removeFromSuperview()
         }
         
+        circularLayoutView.shift = -60
+        
         for i in 1...12 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i), execute: {
-                let button = UIButton.init(frame: .zero)
-                button.setTitleColor(.blue, for: .normal)
-                button.setTitle("\(i)", for: .normal)
-                self.circularLayoutView.addSubview(button)
-            })
+            timers.append(Timer.scheduledTimer(timeInterval: TimeInterval(i), target: self, selector: #selector(timerCallback), userInfo: i, repeats: false))
         }
+    }
+    
+    @objc private func timerCallback(_ timer: Timer) {
+        guard let i = timer.userInfo as? Int else { return }
+        
+        let button = UIButton.init(frame: .zero)
+        button.setTitleColor(.blue, for: .normal)
+        button.setTitle("\(i)", for: .normal)
+        self.circularLayoutView.addSubview(button)
     }
 
     override func viewDidLoad() {
