@@ -1,5 +1,4 @@
 # CircularLayoutView
-<<<<<<< HEAD
 
 [![CI Status](http://img.shields.io/travis/ahmedk92/CircularLayoutView.svg?style=flat)](https://travis-ci.org/ahmedk92/CircularLayoutView)
 [![Version](https://img.shields.io/cocoapods/v/CircularLayoutView.svg?style=flat)](http://cocoapods.org/pods/CircularLayoutView)
@@ -30,4 +29,4 @@ ahmedk92, ahmedkhalaf.92@gmail.com
 CircularLayoutView is available under the MIT license. See the LICENSE file for more info.
 =======
 A container view to layout subviews in a circular fashion.
->>>>>>> a86907ddbac0b02c63e21838aa2f31e88c7d98a2
+
