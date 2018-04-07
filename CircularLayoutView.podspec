@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ahmedk92' => 'ahmedkhalaf.92@gmail.com' }
   s.source           = { :git => 'https://github.com/ahmedk92/CircularLayoutView.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/ahmedkhalaf_92'
 
   s.ios.deployment_target = '8.0'
   s.swift_version = '4.0'
