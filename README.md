@@ -9,7 +9,7 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-<video>
+<video width="272" height="480">
 <source src="demo" type="video/mp4">
 </video>
 
