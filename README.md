@@ -11,6 +11,22 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ![CircleLayoutView](demo.gif)
 
+## Usage
+Can be used from Iterface Builder and code.
+
+### Interface Builder
+1. Drag a `UIView` from the IB object library.
+2. Set the class of the view to `CircularLayoutView`.
+3. Adjust the `shift` and `radiusFactor`, if desired, from the attributes inspector.
+4. Drag subviews into it.
+
+### Code
+```Swift
+circularLayoutView.shift = -60 // 60 Degrees counter-clockwise.
+circularLayoutView.radiusFactor = 0.5 // leave half of the available width as padding.
+circularLayoutView.addSubview(aView)
+```
+
 ## Requirements
 
 ## Installation
