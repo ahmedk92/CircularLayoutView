@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  A container view to layout subviews in a circular fashion..
                        DESC
 
   s.homepage         = 'https://github.com/ahmedk92/CircularLayoutView'
@@ -29,6 +29,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.swift_version = '4.0'
 
   s.source_files = 'CircularLayoutView/Classes/**/*'
   
