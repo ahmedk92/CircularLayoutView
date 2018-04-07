@@ -11,7 +11,11 @@ import UIKit
 @IBDesignable
 open class CircularLayoutView: UIView {
     
+    /// Controls the padding.
+    /// Values: From 0 to 1.
     @IBInspectable open var radiusFactor: CGFloat = 0.7
+    
+    /// Controls the start angle of the final arrangement. Values: in degrees, +ve clockwise, -ve counter-clockwise.
     @IBInspectable open var shift: CGFloat = 0
     
     private var circularConstraints: [NSLayoutConstraint] = []
