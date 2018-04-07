@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CircularLayoutView'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'A container view to layout subviews in a circular fashion.'
 
 # This description is used to generate tags and improve search results.
