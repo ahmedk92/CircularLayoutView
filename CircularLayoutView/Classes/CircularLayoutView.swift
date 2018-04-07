@@ -9,18 +9,53 @@
 import UIKit
 
 @IBDesignable
-class CircularLayoutView: UIView {
+open class CircularLayoutView: UIView {
     
-    @IBInspectable var radiusFactor: CGFloat = 0.7 {
-        didSet {
-            setNeedsLayout()
+    @IBInspectable open var radiusFactor: CGFloat = 0.7
+    @IBInspectable open var shift: CGFloat = 0
+    
+    private var circularConstraints: [NSLayoutConstraint] = []
+    
+    private func setupConstraints() {
+        for constraint in circularConstraints {
+            removeConstraint(constraint)
+        }
+        guard subviews.isEmpty == false else { return }
+        
+        let radius = min(frame.size.width / 2, frame.size.height / 2) * radiusFactor
+        let step: CGFloat = CGFloat(360 / subviews.count)
+        for i in stride(from: 0, to: subviews.count, by: 1) {
+            let angle = CGFloat(i) * step + shift
+            let x = radius * cos(angle.degreesToRadians)
+            let y = radius * sin(angle.degreesToRadians)
+            
+            subviews[i].translatesAutoresizingMaskIntoConstraints = false
+            let centerXConstraint = NSLayoutConstraint.init(item: subviews[i], attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: x)
+            let centerYConstraint = NSLayoutConstraint.init(item: subviews[i], attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: y)
+            
+            addConstraints([centerXConstraint, centerYConstraint])
+            circularConstraints.append(contentsOf: [centerXConstraint, centerYConstraint])
         }
     }
     
-    @IBInspectable var shift: CGFloat = 0 {
-        didSet {
-            setNeedsLayout()
-        }
+    // MARK: - Overrides
+    
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupConstraints()
+    }
+    
+    override open func didAddSubview(_ subview: UIView) {
+        super.didAddSubview(subview)
+        
+        setupConstraints()
+    }
+    
+    override open func willRemoveSubview(_ subview: UIView) {
+        super.willRemoveSubview(subview)
+        
+        setupConstraints()
     }
 
     /*
@@ -31,33 +66,13 @@ class CircularLayoutView: UIView {
     }
     */
     
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for subview in subviews {
             if !subview.isHidden && subview.isUserInteractionEnabled && subview.point(inside: convert(point, to: subview), with: event) {
                 return true
             }
         }
         return false
-    }
-    
-    override func layoutSubviews() {
-        guard subviews.isEmpty == false else {
-            super.layoutSubviews()
-            return
-        }
-        
-        let radius = min(frame.size.width / 2, frame.size.height / 2) * radiusFactor
-        let step: CGFloat = CGFloat(360 / subviews.count)
-        for i in stride(from: 0, to: subviews.count, by: 1) {
-            let angle = CGFloat(i) * step - shift
-            let x = radius * cos(angle.degreesToRadians)
-            let y = radius * sin(angle.degreesToRadians)
-            
-            subviews[i].translatesAutoresizingMaskIntoConstraints = false
-            addConstraint(NSLayoutConstraint.init(item: subviews[i], attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: x))
-            addConstraint(NSLayoutConstraint.init(item: subviews[i], attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: y))
-        }
-        
     }
 
 }
