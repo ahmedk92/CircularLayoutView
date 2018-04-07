@@ -12,12 +12,14 @@ import CircularLayoutView
 class ViewController: UIViewController {
     
     @IBOutlet private weak var circularLayoutView: CircularLayoutView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBAction private func startDemo() {
         
         circularLayoutView.shift = -60
+        
+        for subview in circularLayoutView.subviews {
+            subview.removeFromSuperview()
+        }
         
         for i in 1...12 {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i), execute: {
@@ -27,6 +29,12 @@ class ViewController: UIViewController {
                 self.circularLayoutView.addSubview(button)
             })
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
