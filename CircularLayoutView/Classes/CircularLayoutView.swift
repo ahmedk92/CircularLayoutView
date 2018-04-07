@@ -1,9 +1,9 @@
 //
 //  CircularLayoutView.swift
-//  ArcView
+//  CircularLayoutView
 //
-//  Created by Arabia -IT on 1/1/18.
-//  Copyright © 2018 Arabia-IT. All rights reserved.
+//  Created by Ahmed Khalaf on 1/1/18.
+//  Copyright © 2018 Ahmed Khalaf. All rights reserved.
 //
 
 import UIKit

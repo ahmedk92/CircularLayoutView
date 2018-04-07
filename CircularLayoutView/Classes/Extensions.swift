@@ -2,7 +2,7 @@
 //  Extensions.swift
 //  CircularLayoutView
 //
-//  Created by admin on 4/7/18.
+//  Created by Ahmed Khalaf on 4/7/18.
 //
 
 import Foundation
