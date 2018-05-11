@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		842B7FCD20A5EADA00A3575C /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B7FCC20A5EADA00A3575C /* ViewController2.swift */; };
 		BADCDDD0C6E85FC9BD893A74 /* Pods_CircularLayoutView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC34C902CC332DF1D316251 /* Pods_CircularLayoutView_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6A6DB558208E9CAF8E133E41 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		842B7FCC20A5EADA00A3575C /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		8CC34C902CC332DF1D316251 /* Pods_CircularLayoutView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CircularLayoutView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		977A4B69C42EA9719F1D9153 /* Pods-CircularLayoutView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CircularLayoutView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CircularLayoutView_Example/Pods-CircularLayoutView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		AC7D3ADB178DBAB87DB14CC4 /* Pods_CircularLayoutView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CircularLayoutView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				842B7FCC20A5EADA00A3575C /* ViewController2.swift */,
 			);
 			name = "Example for CircularLayoutView";
 			path = CircularLayoutView;
@@ -372,6 +375,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				842B7FCD20A5EADA00A3575C /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

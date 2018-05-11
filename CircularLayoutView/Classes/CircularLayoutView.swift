@@ -44,21 +44,8 @@ open class CircularLayoutView: UIView {
     
     // MARK: - Overrides
     
-    override open func awakeFromNib() {
-        super.awakeFromNib()
-        
-        setupConstraints()
-    }
-    
-    override open func didAddSubview(_ subview: UIView) {
-        super.didAddSubview(subview)
-        
-        setupConstraints()
-    }
-    
-    override open func willRemoveSubview(_ subview: UIView) {
-        super.willRemoveSubview(subview)
-        
+    open override func layoutSubviews() {
+        super.layoutSubviews()
         setupConstraints()
     }
 
