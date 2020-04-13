@@ -18,51 +18,47 @@ open class CircularLayoutView: UIView {
     /// Controls the start angle of the final arrangement. Values: in degrees, +ve clockwise, -ve counter-clockwise.
     @IBInspectable open var shift: CGFloat = 0
     
-    private var circularConstraints: [NSLayoutConstraint] = []
+    // MARK: - Overrides
     
-    private func setupConstraints() {
-        for constraint in circularConstraints {
-            removeConstraint(constraint)
-        }
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
         guard subviews.isEmpty == false else { return }
         
         let radius = min(frame.size.width / 2, frame.size.height / 2) * radiusFactor
-        let step: CGFloat = CGFloat(360 / subviews.count)
-        for i in stride(from: 0, to: subviews.count, by: 1) {
-            let angle = CGFloat(i) * step + shift
-            let x = radius * cos(angle.degreesToRadians)
-            let y = radius * sin(angle.degreesToRadians)
+        let step: CGFloat = .pi * 2 / CGFloat(subviews.count)
+        for i in 0..<subviews.count {
+            let angle = CGFloat(i) * step + shift.degreesToRadians
+            let x = radius * cos(angle)
+            let y = radius * sin(angle)
             
-            subviews[i].translatesAutoresizingMaskIntoConstraints = false
-            let centerXConstraint = NSLayoutConstraint.init(item: subviews[i], attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: x)
-            let centerYConstraint = NSLayoutConstraint.init(item: subviews[i], attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: y)
-            
-            addConstraints([centerXConstraint, centerYConstraint])
-            circularConstraints.append(contentsOf: [centerXConstraint, centerYConstraint])
+            subviews[i].center = CGPoint(x: bounds.midX + x, y: bounds.midY + y)
         }
-    }
-    
-    // MARK: - Overrides
-    
-    open override class var requiresConstraintBasedLayout: Bool { true }
-    
-    open override func updateConstraints() {
-        setupConstraints()
-        super.updateConstraints()
     }
     
     open override func addSubview(_ view: UIView) {
         super.addSubview(view)
-        setNeedsUpdateConstraints()
+        sizeToFitSubviewIfNeeded(subview: view)
+        setNeedsLayout()
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    open override func insertSubview(_ view: UIView, at index: Int) {
+        super.insertSubview(view, at: index)
+        sizeToFitSubviewIfNeeded(subview: view)
+        setNeedsLayout()
     }
-    */
+    
+    open override func insertSubview(_ view: UIView, aboveSubview siblingSubview: UIView) {
+        super.insertSubview(view, aboveSubview: siblingSubview)
+        sizeToFitSubviewIfNeeded(subview: view)
+        setNeedsLayout()
+    }
+    
+    open override func insertSubview(_ view: UIView, belowSubview siblingSubview: UIView) {
+        super.insertSubview(view, belowSubview: siblingSubview)
+        sizeToFitSubviewIfNeeded(subview: view)
+        setNeedsLayout()
+    }
     
     override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for subview in subviews {
@@ -71,6 +67,14 @@ open class CircularLayoutView: UIView {
             }
         }
         return false
+    }
+    
+    // MARK: - Private
+    private func sizeToFitSubviewIfNeeded(subview: UIView) {
+        // For convenience, size-to-fit non-autolayout views that have intrinsic content size.
+        if subview.translatesAutoresizingMaskIntoConstraints && subview.bounds.size == .zero {
+            subview.sizeToFit()
+        }
     }
 
 }
