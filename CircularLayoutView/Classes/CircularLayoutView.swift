@@ -44,9 +44,16 @@ open class CircularLayoutView: UIView {
     
     // MARK: - Overrides
     
-    open override func layoutSubviews() {
-        super.layoutSubviews()
+    open override class var requiresConstraintBasedLayout: Bool { true }
+    
+    open override func updateConstraints() {
         setupConstraints()
+        super.updateConstraints()
+    }
+    
+    open override func addSubview(_ view: UIView) {
+        super.addSubview(view)
+        setNeedsUpdateConstraints()
     }
 
     /*
